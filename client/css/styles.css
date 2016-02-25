@@ -1,0 +1,108 @@
+.nav_h5 {
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 200%;
+}
+#home_container {
+	background-image: url("onair.jpeg");
+	background-size: 100%;
+	height: 1000px;
+}
+
+#add_station_container {
+	background-image: url("mic.jpeg");
+	background-size: 100%;
+	height: 1000px;
+}
+
+.form-background {
+	padding: 20px 40px 60px 40px ;
+	background-color: white;
+	border: 1px solid transparent;
+	border-radius: 0;
+}
+.home_h2 {
+	margin-top: 100px;
+	color: white;
+}
+
+.station_h2 {
+	margin-top: 40px;
+}
+
+.locationbox {
+	margin-top: 7px;
+	margin-left: 20px;
+	width: 70%;
+	display: inline-block;
+}
+.home_labels {
+	font-size: 15px;
+}
+.home_ul, .home_h3 {
+	color: white;
+}
+
+#search_btn {
+	margin-left: 75%;
+}
+
+#reg_btn {
+	margin-left: 40px;
+}
+
+
+#del_station_btn {
+	display: inline-block;
+}
+
+#add_station_btn {
+	margin-left: 10px;
+}
+
+.input-xs {
+    height: 22px;
+    padding: 5px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+    width: 20%;
+}
+
+.stations_title{
+	margin-top: 80px;
+}
+
+.station_search {
+	margin-top: 30px;
+}
+.genre_form {
+	margin-left: 70px;
+}
+
+.stations_img {
+	height: 200px;
+	width: 200px;
+}
+
+.stations_div {
+	margin: 30px;
+	display: inline-block;
+	width: 220px;
+}
+
+.stationInfo_h4 {
+	margin: 30px;
+}
+.station_edit {
+	margin-left: 30px;
+}
+.reg_input {
+	width: 40%;
+}
+
+.login_form{
+	display: inline-block;
+	position: relative;
+	text-align: center;
+}

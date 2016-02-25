@@ -1,0 +1,51 @@
+<div ng-controller ='stationController'>
+		<div class='stations_title col-md-6 col-md-offset-1'>
+			<h3>Search Radio Stations</h3>
+			<div class='station_search'>
+				<form class='form-inline'>
+					<div class='form-group'>
+						<label for="locations">Location: &nbsp</label>
+						<select class='form-control' ng-change='showStations()' ng-model="show_station.location">
+							<option value="All Cities">All Cities</option>
+								<option ng-repeat="station in search_stations | unique:'location'">{{station.location}}</option>
+						</select>
+						</div>
+						<div class='form-group'>
+							<div ng-show='isLoggedIn()' class='genre_form'>
+								<label for='genre'>Genre:</label>
+								<select class='form-control' ng-change='showStations()' ng-model="show_station.genre">
+									<option selected='selected'>All Genres</option>
+									<option>Alternative</option>
+									<option>Classic Rock</option>
+									<option>Classical</option>
+									<option>Comedy</option>
+									<option>Country</option>
+									<option>Dance</option>
+									<option>Hip Hop and R&B</option>
+									<option>Jazz</option>
+									<option>Pop</option>
+									<option>Mix & Variety</option>
+									<option>News & Talk</option>
+									<option>Oldies</option>
+									<option>Reggae & Island</option>
+									<option>Rock</option>
+									<option>Soft Rock</option>
+									<option>Spanish</option>
+									<option>Sports</option>
+									<option>World</option>
+								</select>
+							</div>
+						</div>
+				</form>
+			</div>
+		</div>
+		<div class='col-md-10 col-md-offset-1'>
+			<div class='row'>
+				<div ng-repeat ='station in stations' class='stations_div'>
+						<a href ng-click="stationInfo(station._id)"><img class='stations_img' ng-src='{{station.url}}'></a>
+						<h6>{{station.name}} {{station.frequency}} {{station.wave}}</h6>
+						<h6>{{station.description}}</h6>
+				</div>
+			</div>
+		</div>
+</div>

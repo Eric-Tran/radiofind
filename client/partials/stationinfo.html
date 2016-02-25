@@ -1,0 +1,360 @@
+<div ng-controller = 'stationInfoController'>
+	<div class='container' style='margin-top: 80px'>
+		<div class='row'>
+			<div class='col-md-3'>
+				<h3>{{stationInfo.name}} {{stationInfo.frequency}} {{stationInfo.wave}}</h3>
+				<br>
+				<img class='stations_img' ng-src='{{stationInfo.url}}'>
+			</div>
+			<hr>
+			<div class='col-md-9'>
+				<h5 class='stationInfo_h4'>Added:&nbsp {{stationInfo.created_at | date: 'mediumDate'}}</h5>
+				<h5 class='stationInfo_h4'>Location:&nbsp {{stationInfo.location}}</h5>
+				<h5 class='stationInfo_h4'>Call Sign:&nbsp {{stationInfo.call_sign}}</h5>
+				<h5 class='stationInfo_h4'>Genre:&nbsp {{stationInfo.genre}}</h5>
+				<h5 class='stationInfo_h4'>{{stationInfo.description}}</h5>
+				<button ng-show='isLoggedIn()' ng-click='editShow()' class='btn btn-default btn-xs station_edit'>Edit</button>
+				<button ng-disabled='!isLoggedIn()' ng-show='!status' ng-click='addFavorite(stationInfo._id)' class='btn btn-default btn-xs station_edit'>+ Add to Favorites</button>
+				<button ng-show='status' ng-click='removeFavorite()' class='btn btn-default btn-xs station_edit'>Remove From Favorites</button>
+			</div>
+			<form class='form-horizontal col-md-3' ng-show="isEditing">
+				<div class='form-group'>
+					<label for='stationName'>Station Name:</label>
+					<input type='text' ng-model='stationInfo.name' class='form-control input-sm'>
+				</div>
+				<div class='form-group'>
+					<label for='frequency'>Frequency:</label>
+					<input type='text' ng-model='stationInfo.frequency' class='form-control input-sm'></input>
+				</div>
+				<div class='form-group'>
+					<select style='font-size: 10px' class='form-control input-xs' ng-model='stationInfo.wave'>
+						<option>FM</option>
+						<option>AM</option>
+					</select>
+				</div>
+				<div class='form-group'>
+					<label for='callSign'>Call Sign:</label>
+					<input type='text' ng-model='stationInfo.call_sign' class='form-control input-sm' id='callSign'>
+				</div>
+				<div class='form-group'>
+					<label for='Genre'>Genre:</label>
+					<select class='form-control input-sm' ng-model="stationInfo.genre">
+						<option selected='selected'>All Genres</option>
+						<option>Alternative</option>
+						<option>Classic Rock</option>
+						<option>Classical</option>
+						<option>Comedy</option>
+						<option>Country</option>
+						<option>Dance</option>
+						<option>Hip Hop and R&B</option>
+						<option>Jazz</option>
+						<option>Pop</option>
+						<option>Mix & Variety</option>
+						<option>News & Talk</option>
+						<option>Oldies</option>
+						<option>Reggae & Island</option>
+						<option>Rock</option>
+						<option>Soft Rock</option>
+						<option>Spanish</option>
+						<option>Sports</option>
+						<option>World</option>
+					</select>
+				</div>
+				<div class='form-group'>
+					<label for='location'>Location:</label>
+					<select class='form-control input-sm' ng-model="stationInfo.location">
+						<option value ="All Cities">All Cities</option>
+						<option value ="Abilene, TX">Abilene, TX</option>
+						<option value ="Akron, OH">Akron, OH</option>
+						<option value ="Albany, GA">Albany, GA</option>
+						<option value ="Albany, NY">Albany, NY</option>
+						<option value ="Albuquerque, NM">Albuquerque, NM</option>
+						<option value ="Allentown, PA">Allentown, PA</option>
+						<option value ="Amarillo, TX">Amarillo, TX</option>
+						<option value ="Anchorage, AK">Anchorage, AK</option>
+						<option value ="Ann Arbor, MI">Ann Arbor, MI</option>
+						<option value ="Appleton, WI">Appleton, WI</option>
+						<option value ="Asheville, NC">Asheville, NC</option>
+						<option value ="Athens, GA">Athens, GA</option>
+						<option value ="Atlanta, GA">Atlanta, GA</option>
+						<option value ="Auburn, AL">Auburn, AL</option>
+						<option value ="Auburn, WA">Auburn, WA</option>
+						<option value ="Augusta, GA">Augusta, GA</option>
+						<option value ="Austin, TX">Austin, TX</option>
+						<option value ="Bakersfield, CA">Bakersfield, CA</option>
+						<option value ="Baltimore, MD">Baltimore, MD</option>
+						<option value ="Baton Rouge, LA">Baton Rouge, LA</option>
+						<option value ="Battle Creek, MI">Battle Creek, MI</option>
+						<option value ="Beaumont, TX">Beaumont, TX</option>
+						<option value ="Beckley, WV">Beckley, WV</option>
+						<option value ="Biloxi, MS">Biloxi, MS</option>
+						<option value ="Binghamton, NY">Binghamton, NY</option>
+						<option value ="Birmingham, AL">Birmingham, AL</option>
+						<option value ="Bismarck, ND">Bismarck, ND</option>
+						<option value ="Blacksburg, VA">Blacksburg, VA</option>
+						<option value ="Block Island, RI">Block Island, RI</option>
+						<option value ="Bloomington, IL">Bloomington, IL</option>
+						<option value ="Boise, ID">Boise, ID</option>
+						<option value ="Boone, NC">Boone, NC</option>
+						<option value ="Boston, MA">Boston, MA</option>
+						<option value ="Bridgeport, CT">Bridgeport, CT</option>
+						<option value ="Brunswick, GA">Brunswick, GA</option>
+						<option value ="Bryan, TX">Bryan, TX</option>
+						<option value ="Buffalo, NY">Buffalo, NY</option>
+						<option value ="Canton, OH">Canton, OH</option>
+						<option value ="Cape Cod, MA">Cape Cod, MA</option>
+						<option value ="Cedar Rapids, IA">Cedar Rapids, IA</option>
+						<option value ="Charleston, SC">Charleston, SC</option>
+						<option value ="Charleston, WV">Charleston, WV</option>
+						<option value ="Charlotte, NC">Charlotte, NC</option>
+						<option value ="Chattanooga, TN">Chattanooga, TN</option>
+						<option value ="Cheyenne, WY">Cheyenne, WY</option>
+						<option value ="Chicago, IL">Chicago, IL</option>
+						<option value ="Chillicothe, OH">Chillicothe, OH</option>
+						<option value ="Cincinnati, OH">Cincinnati, OH</option>
+						<option value ="Clarksburg, WV">Clarksburg, WV</option>
+						<option value ="Clarksville, VA">Clarksville, VA</option>
+						<option value ="Cleveland, OH">Cleveland, OH</option>
+						<option value ="Colorado Springs, CO">Colorado Springs, CO</option>
+						<option value ="Columbia, SC">Columbia, SC</option>
+						<option value ="Columbia Jefferson City, MO">Columbia Jefferson City, MO</option>
+						<option value ="Columbus, GA">Columbus, GA</option>
+						<option value ="Columbus, OH">Columbus, OH</option>
+						<option value ="Columbus Starkville, MS">Columbus Starkville, MS</option>
+						<option value ="Corpus Christi, TX">Corpus Christi, TX</option>
+						<option value ="Cumberland, MD">Cumberland, MD</option>
+						<option value ="Dallas, TX">Dallas, TX</option>
+						<option value ="Danbury, CT">Danbury, CT</option>
+						<option value ="Danville, VA">Danville, VA</option>
+						<option value ="Davenport, IA">Davenport, IA</option>
+						<option value ="Dayton, OH">Dayton, OH</option>
+						<option value ="Defiance, OH">Defiance, OH</option>
+						<option value ="Denver, CO">Denver, CO</option>
+						<option value ="Des Moines, IA">Des Moines, IA</option>
+						<option value ="Detroit, MI">Detroit, MI</option>
+						<option value ="Dickinson, ND">Dickinson, ND</option>
+						<option value ="Digital, NAT">Digital, NAT</option>
+						<option value ="Dothan, AL">Dothan, AL</option>
+						<option value ="Dubuque, IA">Dubuque, IA</option>
+						<option value ="Duluth, MN">Duluth, MN</option>
+						<option value ="Eau Claire, WI">Eau Claire, WI</option>
+						<option value ="Elkhart, IN">Elkhart, IN</option>
+						<option value ="Elkins, WV">Elkins, WV</option>
+						<option value ="El Paso, TX">El Paso, TX</option>
+						<option value ="Erie, PA">Erie, PA</option>
+						<option value ="Eugene-Springfield, OR">Eugene-Springfield, OR</option>
+						<option value ="Fairbanks, AK">Fairbanks, AK</option>
+						<option value ="Fairmont, WV">Fairmont, WV</option>
+						<option value ="Faribault, MN">Faribault, MN</option>
+						<option value ="Farmington, NM">Farmington, NM</option>
+						<option value ="Fayetteville, AR">Fayetteville, AR</option>
+						<option value ="Fayetteville, NC">Fayetteville, NC</option>
+						<option value ="Flint, MI">Flint, MI</option>
+						<option value ="Florence, SC">Florence, SC</option>
+						<option value ="Florida Keys, FL">Florida Keys, FL</option>
+						<option value ="Fort Collins, CO">Fort Collins, CO</option>
+						<option value ="Fort Walton Beach, FL">Fort Walton Beach, FL</option>
+						<option value ="Fort Wayne, IN">Fort Wayne, IN</option>
+						<option value ="Frederick, MD">Frederick, MD</option>
+						<option value ="Fresno, CA">Fresno, CA</option>
+						<option value ="Fort Myers, FL">Fort Myers, FL</option>
+						<option value ="Fort Smith, AR">Fort Smith, AR</option>
+						<option value ="Gadsden, AL">Gadsden, AL</option>
+						<option value ="Gainesville, GA">Gainesville, GA</option>
+						<option value ="Gallup, NM">Gallup, NM</option>
+						<option value ="Grand Forks, ND">Grand Forks, ND</option>
+						<option value ="Grand Rapids, MI">Grand Rapids, MI</option>
+						<option value ="Grass Valley, CA">Grass Valley, CA</option>
+						<option value ="Great Falls, MT">Great Falls, MT</option>
+						<option value ="Green Bay, WI">Green Bay, WI</option>
+						<option value ="Greensboro-Winston-Salem-High Point, NC">Greensboro-Winston-Salem-High Point, NC</option>
+						<option value ="Greenville-New Bern-Jacksonville, NC">Greenville-New Bern-Jacksonville, NC</option>
+						<option value ="Greenville, SC">Greenville, SC</option>
+						<option value ="Hanover, NH">Hanover, NH</option>
+						<option value ="Harrisburg, PA">Harrisburg, PA</option>
+						<option value ="Harrisonburg, VA">Harrisonburg, VA</option>
+						<option value ="Hartford, CT">Hartford, CT</option>
+						<option value ="Henderson, TN">Henderson, TN</option>
+						<option value ="Honolulu, HI">Honolulu, HI</option>
+						<option value ="Houston, TX">Houston, TX</option>
+						<option value ="Huntington, WV">Huntington, WV</option>
+						<option value ="Huntsville, AL">Huntsville, AL</option>
+						<option value ="Indianapolis, IN">Indianapolis, IN</option>
+						<option value ="Ithaca, NY">Ithaca, NY</option>
+						<option value ="Jackson, MS">Jackson, MS</option>
+						<option value ="Jacksonville, FL">Jacksonville, FL</option>
+						<option value ="Johnson City-Kingsport-Bristol, TN">Johnson City-Kingsport-Bristol, TN</option>
+						<option value ="Kalamazoo, MI">Kalamazoo, MI</option>
+						<option value ="Kansas City, KS">Kansas City, KS</option>
+						<option value ="Kansas City, MO">Kansas City, MO</option>
+						<option value ="Kauai, HI">Kauai, HI</option>
+						<option value ="Knoxville, TN">Knoxville, TN</option>
+						<option value ="Kokomo, IN">Kokomo, IN</option>
+						<option value ="Lafayette, LA">Lafayette, LA</option>
+						<option value ="Lake Charles, LA">Lake Charles, LA</option>
+						<option value ="Lancaster, CA">Lancaster, CA</option>
+						<option value ="Lancaster, PA">Lancaster, PA</option>
+						<option value ="Lansing, MI">Lansing, MI</option>
+						<option value ="Las Vegas, NV">Las Vegas, NV</option>
+						<option value ="Laurel, MS">Laurel, MS</option>
+						<option value ="Lexington, KY">Lexington, KY</option>
+						<option value ="Lima, OH">Lima, OH</option>
+						<option value ="Little Rock, AR">Little Rock, AR</option>
+						<option value ="Long Island, NY">Long Island, NY</option>
+						<option value ="Los Angeles, CA">Los Angeles, CA</option>
+						<option value ="Louisville, KY">Louisville, KY</option>
+						<option value ="Macon, GA">Macon, GA</option>
+						<option value ="Madison, WI">Madison, WI</option>
+						<option value ="Manchester, NH">Manchester, NH</option>
+						<option value ="Mankato, MN">Mankato, MN</option>
+						<option value ="Mansfield, OH">Mansfield, OH</option>
+						<option value ="Marion, OH">Marion, OH</option>
+						<option value ="Martha's Vineyard, MA">Martha's Vineyard, MA</option>
+						<option value ="Martinsburg, WV">Martinsburg, WV</option>
+						<option value ="Maui, HI">Maui, HI</option>
+						<option value ="McAllen, TX">McAllen, TX</option>
+						<option value ="Melbourne, FL">Melbourne, FL</option>
+						<option value ="Memphis, TN">Memphis, TN</option>
+						<option value ="Miami, FL">Miami, FL</option>
+						<option value ="Middlesex-Somerset-Union, NJ">Middlesex-Somerset-Union, NJ</option>
+						<option value ="Milwaukee, WI">Milwaukee, WI</option>
+						<option value ="Minneapolis, MN">Minneapolis, MN</option>
+						<option value ="Minot, ND">Minot, ND</option>
+						<option value ="Mobile, AL">Mobile, AL</option>
+						<option value ="Modesto, CA">Modesto, CA</option>
+						<option value ="Monmouth-Ocean, NJ">Monmouth-Ocean, NJ</option>
+						<option value ="Monroe, LA">Monroe, LA</option>
+						<option value ="Monterey, CA">Monterey, CA</option>
+						<option value ="Montgomery, AL">Montgomery, AL</option>
+						<option value ="Morgantown, WV">Morgantown, WV</option>
+						<option value ="Morristown-Northern, NJ">Morristown-Northern, NJ</option>
+						<option value ="Muncie, IN">Muncie, IN</option>
+						<option value ="Muskegon, MI">Muskegon, MI</option>
+						<option value ="Myrtle Beach, SC">Myrtle Beach, SC</option>
+						<option value ="Nashville, TN">Nashville, TN</option>
+						<option value ="New Bedford-Fall River, MA">New Bedford-Fall River, MA</option>
+						<option value ="New Haven, CT">New Haven, CT</option>
+						<option value ="New London, CT">New London, CT</option>
+						<option value ="New Orleans, LA">New Orleans, LA</option>
+						<option value ="New York, NY">New York, NY</option>
+						<option value ="Norfolk, VA">Norfolk, VA</option>
+						<option value ="Ogallala, NE">Ogallala, NE</option>
+						<option value ="Oklahoma City, OK">Oklahoma City, OK</option>
+						<option value ="Omaha, NE">Omaha, NE</option>
+						<option value ="Orlando, FL">Orlando, FL</option>
+						<option value ="Oxnard, CA">Oxnard, CA</option>
+						<option value ="Palm Springs, CA">Palm Springs, CA</option>
+						<option value ="Panama City, FL">Panama City, FL</option>
+						<option value ="Parkersburg, WV">Parkersburg, WV</option>
+						<option value ="Pensacola, FL">Pensacola, FL</option>
+						<option value ="Peoria, IL">Peoria, IL</option>
+						<option value ="Philadelphia, PA">Philadelphia, PA</option>
+						<option value ="Phoenix, AZ">Phoenix, AZ</option>
+						<option value ="Pittsburgh, PA">Pittsburgh, PA</option>
+						<option value ="Portland, ME">Portland, ME</option>
+						<option value ="Portland, OR">Portland, OR</option>
+						<option value ="Portsmouth, NH">Portsmouth, NH</option>
+						<option value ="Poughkeepsie, NY">Poughkeepsie, NY</option>
+						<option value ="Providence, RI">Providence, RI</option>
+						<option value ="Pueblo, CO">Pueblo, CO</option>
+						<option value ="Raleigh, NC">Raleigh, NC</option>
+						<option value ="Reading, PA">Reading, PA</option>
+						<option value ="Reno, NV">Reno, NV</option>
+						<option value ="Richmond, VA">Richmond, VA</option>
+						<option value ="Riverside, CA">Riverside, CA</option>
+						<option value ="Roanoke, VA">Roanoke, VA</option>
+						<option value ="Rochester, MN">Rochester, MN</option>
+						<option value ="Rochester, NY">Rochester, NY</option>
+						<option value ="Rockford, IL">Rockford, IL</option>
+						<option value ="Sacramento, CA">Sacramento, CA</option>
+						<option value ="Saginaw, MI">Saginaw, MI</option>
+						<option value ="Salisbury, MD">Salisbury, MD</option>
+						<option value ="Salt Lake City, UT">Salt Lake City, UT</option>
+						<option value ="San Antonio, TX">San Antonio, TX</option>
+						<option value ="San Diego, CA">San Diego, CA</option>
+						<option value ="San Francisco, CA">San Francisco, CA</option>
+						<option value ="San Jose, CA">San Jose, CA</option>
+						<option value ="San Juan, PR">San Juan, PR</option>
+						<option value ="Santa Barbara, CA">Santa Barbara, CA</option>
+						<option value ="Sarasota, FL">Sarasota, FL</option>
+						<option value ="Savannah, GA">Savannah, GA</option>
+						<option value ="Seattle, WA">Seattle, WA</option>
+						<option value ="Shreveport, LA">Shreveport, LA</option>
+						<option value ="Sioux City, IA">Sioux City, IA</option>
+						<option value ="Somerset, KY">Somerset, KY</option>
+						<option value ="South Bend, IN">South Bend, IN</option>
+						<option value ="South Boston, VA">South Boston, VA</option>
+						<option value ="South Hill, VA">South Hill, VA</option>
+						<option value ="Spartanburg, SC">Spartanburg, SC</option>
+						<option value ="Spokane, WA">Spokane, WA</option>
+						<option value ="Springfield, MA">Springfield, MA</option>
+						<option value ="Springfield, MO">Springfield, MO</option>
+						<option value ="Saint Louis, MO">Saint Louis, MO</option>
+						<option value ="Stockton, CA">Stockton, CA</option>
+						<option value ="Sussex, NJ">Sussex, NJ</option>
+						<option value ="Syracuse, NY">Syracuse, NY</option>
+						<option value ="Tallahassee, FL">Tallahassee, FL</option>
+						<option value ="Tampa, FL">Tampa, FL</option>
+						<option value ="Terre Haute, IN">Terre Haute, IN</option>
+						<option value ="Toledo, OH">Toledo, OH</option>
+						<option value ="Topeka, KS">Topeka, KS</option>
+						<option value ="Tucson, AZ">Tucson, AZ</option>
+						<option value ="Tulsa, OK">Tulsa, OK</option>
+						<option value ="Tupelo, MS">Tupelo, MS</option>
+						<option value ="Tuscaloosa, AL">Tuscaloosa, AL</option>
+						<option value ="Valley, AL">Valley, AL</option>
+						<option value ="Vicksburg, MS">Vicksburg, MS</option>
+						<option value ="Waco, TX">Waco, TX</option>
+						<option value ="Warsaw, IN">Warsaw, IN</option>
+						<option value ="Washington, DC">Washington, DC</option>
+						<option value ="Waterloo-Cedar Falls, IA">Waterloo-Cedar Falls, IA</option>
+						<option value ="Westchester, NY">Westchester, NY</option>
+						<option value ="West Palm Beach, FL">West Palm Beach, FL</option>
+						<option value ="Wheeling, WV">Wheeling, WV</option>
+						<option value ="Wichita, KS">Wichita, KS</option>
+						<option value ="Wichita Falls, TX">Wichita Falls, TX</option>
+						<option value ="Wilkes Barre-Scranton, PA">Wilkes Barre-Scranton, PA</option>
+						<option value ="Williamsport, PA">Williamsport, PA</option>
+						<option value ="Wilmington, DE">Wilmington, DE</option>
+						<option value ="Wilmington, NC">Wilmington, NC</option>
+						<option value ="Winchester, VA">Winchester, VA</option>
+						<option value ="Wooster, OH">Wooster, OH</option>
+						<option value ="Worcester, MA">Worcester, MA</option>
+						<option value ="York, PA">York, PA</option>
+						<option value ="Youngstown, OH">Youngstown, OH</option>
+					</select>
+				</div>
+				<div class='form-group'>
+					<label for='logoUrl'>Logo image URL:</label>
+					<input type='text' ng-model='stationInfo.url' class='form-control input-sm' id='imgLogo'>
+				</div>
+				<div class='form-group'>
+					<label for='description'>Description:</label>
+					<textarea rows='4' ng-model='stationInfo.description' type='text' class='form-control input-sm' id='Description'></textarea>
+				</div>
+				<div class='pull-right'>
+					<button type='text' ng-click='cancel()' id="del_station_btn" class="btn btn-default">Cancel</button>
+					<button type='submit' id="add_station_btn" ng-click='editStation()' class="btn btn-primary">Update</button>
+				</div>
+			</form>
+		</div>
+		<hr>
+		<h4>Comments</h4>
+		<span ng-hide='isLoggedIn()' style='color: red'>* Please Login to Comment</span>
+		<form>
+			<div class='form-group'>
+				<label for='commentBox'>Add Comment:</label>
+				<textarea ng-disabled='!isLoggedIn()' style='width: 40%' rows='6' type='text' class='form-control' ng-model='newComment.comment'></textarea>
+				<br>
+				<button ng-disabled='!isLoggedIn()' type='submit' ng-click='addComment(stationInfo._id)' class='btn btn-primary'>Submit Comment</button>
+			</div>
+		<hr>
+		</form>
+		<div ng-repeat='comment in stationInfo.comments'>
+			<p style='font-style:italic'>{{comment.created_at | date: 'mediumDate'}}</p>
+			<h6>{{comment.comment}}</h6>
+			<p style='font-style:italic'>{{comment.user}}</p>
+			<hr>
+		</div>
+	</div>
+</div>

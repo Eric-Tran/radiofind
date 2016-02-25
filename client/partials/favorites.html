@@ -1,0 +1,17 @@
+<div ng-controller ='favoriteController'>
+	<div class='stations_title col-md-6 col-md-offset-1'>
+		<h3>Favorite Radio Stations</h3>
+	</div>
+	<div class='col-md-10 col-md-offset-1'>
+	<h5 style='color: red' ng-show='message'>You have not added any favorite stations.</h5>
+	<h5 style='color: red' ng-show='!isLoggedIn()'>Login or Register to Save Favorites</h5>
+	<a ng-show='!isLoggedIn()' href='#/stations/register' style='margin-left: 10px' class="btn btn-primary btn-lg">Register</a>
+		<div class='row'>
+			<div ng-repeat='station in stations' class='stations_div'>
+				<a href ng-click="stationInfo(station._id)"><img class='stations_img' ng-src='{{station.url}}'></a>
+				<h6>{{station.name}} {{station.frequency}} {{station.wave}}</h6>
+				<h6>{{station.description}}</h6>
+			</div>
+		</div>
+	</div>
+</div>

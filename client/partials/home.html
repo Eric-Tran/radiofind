@@ -1,0 +1,31 @@
+<div ng-controller = 'homeController'>
+	<div id='home_container'>
+		<div class='row'>
+			<div class='col-md-4 col-md-offset-1'>
+				<h3 class='home_h2'>Find Local Radio Stations in Your Area!</h3>
+				<form class='form-horizontal'>
+					<div class='locationbox'>
+						<div class='form-group'>
+							<label style='color: white; font-weight: bold' class='home_labels' for='location'>Location:</label>
+							<select style='background-color: white' class='form-control' ng-model="search_station.location">
+								<option value="All Cities">All Cities</option>
+								<option ng-repeat="station in stations | unique:'location'">{{station.location}}</option>
+							</select>
+						</div>
+						<button type="submit" id="search_btn" ng-click='searchStation()' class="btn btn-primary">Search</button>
+					</div>
+				</form>
+			</div>
+			<div ng-hide='isLoggedIn()' class='col-md-5 col-md-offset-1'>
+				<h3 class="home_h2">Register & Join the Community</h3>
+				<ul class=home_ul>
+					<li><h4 class='home_h3'>Add New Stations</h4></li>
+					<li><h4 class='home_h3'>Gain Access to Genre Search</h4></li>
+					<li><h4 class='home_h3'>Save Favorite Stations</h4></li>
+					<li><h4 class='home_h3'>Review and Comment on Stations</h4></li>
+				</ul>
+				<a href='#/stations/register' id="reg_btn" class="btn btn-primary">Register Now</a>
+			</div>
+		</div>
+	</div>
+</div>
