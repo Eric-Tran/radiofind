@@ -12,6 +12,7 @@ myApp.controller('navController', function($scope, $location, authFactory) {
       }
   	});
     $scope.error = false;
+    $location.path('/stations');
   };
   	$scope.logOut = function() {
   		authFactory.logOut();

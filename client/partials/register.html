@@ -2,12 +2,12 @@
   <div class='container'>
     <div class="page-header">
   	</div>
-    <div class='reg_input' ng-show="error" class="alert alert-danger row">
-  	</div>
     <div class='reg_box'>
       <form ng-submit="register()" style="margin-top:40px;" name='regform'>
-        <h3>Register</h3>
-        <span ng-show='error' style='color: red'>{{error.message}}</span>
+        <h3>Register</h3>     
+        <div ng-show='error' class="alert alert-danger">
+          <strong>Error</strong> {{error.message}}
+        </div>
         <div class="form-group">
           <input type="text" class="form-control reg_input" placeholder="Full Name" ng-model="user.full_name"></input>
         </div>
