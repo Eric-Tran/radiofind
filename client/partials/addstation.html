@@ -7,7 +7,7 @@
   					<strong>Success!</strong> Station Successfully Added!
 				</div>
 				<hr>
-				<h4 style='color: white' ng-show='!isLoggedIn()'>Login or Register to Add Stations</h4>
+				<h5 style='color: red' ng-show='!isLoggedIn()'>Login or Register to Add Stations</h4>
 				<a ng-show='!isLoggedIn()' href='#/stations/register' style='margin-left: 10px' class="btn btn-primary btn-lg">Register</a>
 				<div class='form-background' ng-show='isLoggedIn()'>
 					<form class='form-horizontal'>

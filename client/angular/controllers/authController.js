@@ -14,7 +14,7 @@ myApp.controller('authController', function($scope, $location, authFactory){
     authFactory.logIn($scope.user).error(function(error){
       $scope.error = error;
     // }).then(function(){
-    //   $location.path('/');
+      // $location.path('/stations');
     // });
     });
   };

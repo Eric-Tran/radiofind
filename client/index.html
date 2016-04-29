@@ -22,7 +22,7 @@
 </head>
 <body>
 <div ng-controller ='navController'>
-   <nav class="navbar navbar-default navbar-fixed-top">
+   <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class ='container'>
          <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -50,10 +50,12 @@
                   <a ng-hide='isLoggedIn()' href='#/stations/register' style='margin-left: 10px' class="btn btn-primary btn-sm">Register</a>
                </form>
                   <h5 class='nav_h5' ng-show='isLoggedIn()'>Welcome {{currentUser()}}!</h5>
-                  <h5 class='nav_h5' ng-show='isLoggedIn()'><a style='margin-left: 20px'href ng-click='logOut()'>Logout</a></h5>
+                  <h6 class='nav_h5' ng-show='isLoggedIn()'><a style='margin-left: 20px; color: white'href ng-click='logOut()'>Logout</a></h5>
             </div>
          </div>
-         <span class='pull-right' ng-show='error' style='color: red'>* Invalid Username or Password.</span>
+         <div ng-show='error' class="alert alert-danger">
+            <strong>Error</strong> Invalid Username or Password.
+         </div>
       </div>
    </nav>
 </div>
